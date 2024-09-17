@@ -32,6 +32,7 @@
                 <td>{{ \Carbon\Carbon::parse($comic->sale_date)->format('d-m-Y') }}</td>
                 <td>{{ $comic->type }}</td>
                 <td><a href="{{ route('comics.show', $comic->id) }}" class="btn btn-primary">Details</a></td>
+                <td><a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-warning">Edit</a></td>
                 
             </tr>
             @endforeach

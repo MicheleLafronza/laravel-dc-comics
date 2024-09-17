@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use App\Functions\Helper;
 
 class ComicsController extends Controller
 {
@@ -34,6 +35,7 @@ class ComicsController extends Controller
 
         $newComic = new Comic();
         $newComic->title = $comic['title'];
+        $newComic->slug = Helper::generateSlug($comic['title'], Comic::class);
         $newComic->description = $comic['description'];
         $newComic->thumb = $comic['thumb'];
         $newComic->price = $comic['price'];
@@ -59,9 +61,10 @@ class ComicsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Comic $comic)
     {
-        //
+
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -69,7 +72,20 @@ class ComicsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->all();
+        $comic = Comic::find($id);
+
+    // se il titolo è cambiato genero un nuovo slug, altrimenti no
+
+        if($data['title'] === $comic->title){
+            $data['slug'] = $comic->slug;
+        } else {
+            $data['slug'] = Helper::generateSlug($data['title'], Comic::class);
+        }
+
+        $comic->update($data);
+
+        return redirect()->route('comics.show', $comic);
     }
 
     /**
