@@ -17,7 +17,7 @@
             <th scope="col">Serie</th>
             <th scope="col">Release</th>
             <th scope="col">Tipo</th>
-            <th scope="col">Dettagli</th>
+            <th scope="col">Tools</th>
           </tr>
         </thead>
         <tbody>
