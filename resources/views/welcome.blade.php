@@ -4,7 +4,9 @@
 @section('content')
 
 <div class="container my-5">
-    Benvenuto nell'archivio dei fumetti DC
+    
+    <h2 class="text-center">Benvenuto nell'archivio dei fumetti DC</h2>
+
 </div>
     
 @endsection
